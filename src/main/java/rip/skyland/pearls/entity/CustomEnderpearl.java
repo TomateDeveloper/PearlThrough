@@ -4,6 +4,7 @@ import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import rip.skyland.pearls.Locale;
@@ -21,7 +22,7 @@ public class CustomEnderpearl extends EntityEnderPearl {
     }
 
     protected void a(MovingObjectPosition movingObjectPosition) {
-        Block block = this.world.getType(movingObjectPosition.b, movingObjectPosition.c, movingObjectPosition.d);
+        Block block = (Block) this.world.getType(movingObjectPosition.a());
 
         // check if it's a tripwire
         if ((block == Blocks.TRIPWIRE && Locale.PEARL_THROUGH_TRIPWIRE.getAsBoolean())) {
@@ -46,18 +47,13 @@ public class CustomEnderpearl extends EntityEnderPearl {
             return;
         }
 
-
-        if (this.world.isStatic) {
-            return;
-        }
-
         // since when can other entities shoot enderpearls? (mojang logic)
         if (this.getShooter() == null || !(this.getShooter() instanceof EntityPlayer)) {
             this.dead = true;
             return;
         }
 
-        if (((EntityPlayer) this.getShooter()).playerConnection.b().isConnected() && this.getShooter().world == this.world) {
+        if (!((EntityPlayer) this.getShooter()).playerConnection.isDisconnected() && this.getShooter().world == this.world) {
 
             EntityPlayer entityplayer = (EntityPlayer) this.getShooter();
             CraftPlayer player = entityplayer.getBukkitEntity();
