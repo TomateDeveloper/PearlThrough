@@ -10,7 +10,14 @@
 
     <packaging>jar</packaging>
     <name>Enderpearl</name>
-    <url>https://github.com/NotNV6/PearlThrough</url>
+    <url>https://github.com/TomateDeveloper/PearlThrough</url>
+
+    <repositories>
+        <repository>
+            <id>gamma-snapshots</id>
+            <url>https://repo.seocraft.net/repository/gamma-snapshots</url>
+        </repository>
+    </repositories>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
@@ -38,18 +45,9 @@
         </plugins>
     </build>
 
-
-    <repositories>
-        <repository>
-            <id>spigot-releases</id>
-            <url>http://repo.ja-s.de/mvn/</url>
-        </repository>
-    </repositories>
-
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
     </properties>
 
     <dependencies>
@@ -58,17 +56,10 @@
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
-
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.7.10-R0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.7.10-R0.1-SNAPSHOT</version>
+            <groupId>net.seocraft</groupId>
+            <artifactId>paperspigot</artifactId>
+            <version>1.8-20200415.053535-5</version>
         </dependency>
     </dependencies>
 
